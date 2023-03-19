@@ -1,0 +1,8 @@
+.wrapper {
+  @apply mt-4;
+
+  > div {
+    @apply mt-4 text-gray-700;
+  }
+
+}

@@ -1,31 +1,29 @@
-import React, { FC } from 'react';
+import React from 'react';
 import scss from './Home.module.scss';
 import { cards, ICard } from '../../../utils/mockData';
-import like from './../../../image/like.svg';
-import { LayoutCC } from '../../ui/layout/LayoutCC';
+import { Layout } from '../../ui/layout/Layout';
+import Card from './card/Card';
 
-const Home: FC = () => {
-  return (
-    <LayoutCC>
-      <nav className={scss.wrapper}>
-        {cards.map((t: ICard) => (
-          <div key={t.id} className={scss.body}>
-            <div className={scss.name}>{t.name}</div>
-            <div className={scss.poster}>
-              <img src={t.poster} alt="" />
-            </div>
-            <div className={scss.des}>{t.description}</div>
-            <div className={scss.like}>
-              <div>{t.like}</div>
-              <div>
-                <img src={like} alt="" className={scss.icon} />
-              </div>
-            </div>
-          </div>
-        ))}
-      </nav>
-    </LayoutCC>
-  );
-};
+class Home extends React.Component {
+  render() {
+    return (
+      <Layout>
+        <nav className={scss.wrapper}>
+          {cards.map((t: ICard) => (
+            <Card
+              key={t.id}
+              id={t.id}
+              name={t.name}
+              description={t.description}
+              poster={t.poster}
+              like={t.like}
+              view={t.view}
+            />
+          ))}
+        </nav>
+      </Layout>
+    );
+  }
+}
 
 export default Home;

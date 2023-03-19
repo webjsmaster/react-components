@@ -4,8 +4,12 @@
     @apply lg:w-9/12 w-11/12 m-auto flex justify-between;
   }
 
-  .loc {
-    @apply bg-amber-300 p-0.5 rounded text-blue-600 transition-all;
+  .active {
+    @apply bg-amber-300 px-2 py-0.5 rounded text-blue-600 transition-all;
+  }
+
+  .def {
+    @apply px-2 py-0.5 transition-all;
   }
 
   .logo {
