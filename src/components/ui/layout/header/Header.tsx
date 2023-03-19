@@ -23,6 +23,7 @@ export class Header extends Component {
                 .filter((r) => r.path != ERROR_ROUTE)
                 .map((r) => (
                   <ItemMenu
+                    key={r.path}
                     route={r.path}
                     className={loc.pathname === r.path ? scss.active : scss.def}
                   >

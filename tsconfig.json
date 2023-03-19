@@ -2,13 +2,11 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    //    "type": "module",
     "lib": [
       "DOM",
       "DOM.Iterable",
       "ESNext"
     ],
-    //    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "allowJs": false,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,

@@ -6,10 +6,6 @@ export class Input extends Component {
     input: '',
   };
 
-  constructor(props: any) {
-    super(props);
-  }
-
   componentDidMount() {
     this.setState({ input: localStorage.getItem('search') });
   }

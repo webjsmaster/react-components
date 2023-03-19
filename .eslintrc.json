@@ -5,8 +5,7 @@
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/tsx-runtime"
+    "plugin:prettier/recommended"
   ],
   "env": {
     "browser": true,

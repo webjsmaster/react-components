@@ -1,9 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+import type { InlineConfig } from 'vitest';
+import type { UserConfig } from 'vite';
+
+interface VitestConfigExport extends UserConfig {
+  test: InlineConfig;
+}
+
 export default defineConfig({
   plugins: [react()],
-  // @ts-ignore
   test: {
     globals: true,
     environment: 'jsdom',
@@ -16,4 +22,4 @@ export default defineConfig({
       all: true,
     },
   },
-});
+} as VitestConfigExport);
