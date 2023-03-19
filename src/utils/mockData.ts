@@ -14,6 +14,7 @@ export interface ICard {
   description: string;
   poster: string;
   like: number;
+  view: number;
 }
 
 export const cards: ICard[] = [
@@ -23,6 +24,7 @@ export const cards: ICard[] = [
     description: 'This is thirst card',
     poster: p1,
     like: 2,
+    view: 346,
   },
   {
     id: 2,
@@ -30,6 +32,7 @@ export const cards: ICard[] = [
     description: 'This is second card',
     poster: p2,
     like: 15,
+    view: 125,
   },
   {
     id: 3,
@@ -37,6 +40,7 @@ export const cards: ICard[] = [
     description: 'This is third card',
     poster: p3,
     like: 25,
+    view: 45,
   },
   {
     id: 4,
@@ -44,6 +48,7 @@ export const cards: ICard[] = [
     description: 'This is fourth card',
     poster: p4,
     like: 14,
+    view: 34,
   },
   {
     id: 5,
@@ -51,6 +56,7 @@ export const cards: ICard[] = [
     description: 'This is fifth card',
     poster: p5,
     like: 6,
+    view: 45,
   },
   {
     id: 6,
@@ -58,6 +64,7 @@ export const cards: ICard[] = [
     description: 'This is sixth card',
     poster: p6,
     like: 22,
+    view: 567,
   },
   {
     id: 7,
@@ -65,6 +72,7 @@ export const cards: ICard[] = [
     description: 'This is seventh card',
     poster: p7,
     like: 8,
+    view: 67,
   },
   {
     id: 8,
@@ -72,6 +80,7 @@ export const cards: ICard[] = [
     description: 'This is eighth card',
     poster: p8,
     like: 26,
+    view: 124,
   },
   {
     id: 9,
@@ -79,5 +88,6 @@ export const cards: ICard[] = [
     description: 'This is ninth card',
     poster: p9,
     like: 26,
+    view: 33,
   },
 ];

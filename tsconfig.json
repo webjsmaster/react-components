@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
+    //    "type": "module",
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -26,7 +27,8 @@
   },
   "include": [
     "./src/**/*",
-    "styled.d.ts"
+    "styled.d.ts",
+    "vite.config.ts"
   ],
   "references": [
     {
