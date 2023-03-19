@@ -12,8 +12,6 @@ class ItemMenu extends Component<Props> {
   }
 
   render() {
-    console.log('📌:', this.props);
-
     return (
       <li className={this.props.className}>
         <Link to={this.props.route}>{this.props.children}</Link>
