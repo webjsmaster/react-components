@@ -8,10 +8,12 @@ export const routes: IRoute[] = [
   {
     path: HOME_ROUTE,
     Page: Home,
+    name: 'Home',
   },
   {
     path: ABOUT_ROUTE,
     Page: About,
+    name: 'About',
   },
   {
     path: ERROR_ROUTE,
