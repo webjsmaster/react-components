@@ -1,0 +1,28 @@
+.wrapper {
+  @apply bg-teal-500 min-h-[50px] flex justify-items-center text-gray-700;
+  .container {
+    @apply lg:w-9/12 w-11/12 m-auto flex justify-between;
+  }
+
+  .active {
+    @apply bg-amber-300 px-2 py-0.5 rounded text-blue-600 transition-all;
+  }
+
+  .def {
+    @apply px-2 py-0.5 transition-all;
+  }
+
+  .logo {
+    @apply flex items-center flex-1 w-10 h-10;
+    > img {
+      @apply h-[150%] mt-4;
+    }
+  }
+
+  .menu {
+    @apply flex items-center;
+    > ul {
+      @apply flex gap-3 ;
+    }
+  }
+}

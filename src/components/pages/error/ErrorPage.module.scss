@@ -1,0 +1,10 @@
+.wrapper {
+  @apply flex justify-center items-center h-[100vh] flex-col block font-black;
+  .title {
+    @apply text-8xl;
+  }
+
+  .link {
+    @apply text-blue-600;
+  }
+}
