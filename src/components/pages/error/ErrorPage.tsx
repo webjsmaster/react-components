@@ -6,7 +6,7 @@ import { HOME_ROUTE } from '../../../utils/consts';
 class ErrorPage extends Component {
   render() {
     return (
-      <div className={scss.wrapper}>
+      <div className={scss.wrapper} data-testid="error-page">
         <div className={scss.title}>404</div>
         <div>This is page not found</div>
         <Link to={HOME_ROUTE} className={scss.link}>

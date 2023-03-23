@@ -6,7 +6,7 @@ class About extends Component {
   render() {
     return (
       <Layout>
-        <div className={scss.wrapper}>
+        <div className={scss.wrapper} data-testid="about-page">
           <div>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur culpa, dolor est
             ipsa minus necessitatibus odio perferendis quaerat quibusdam? Ab fugit incidunt
