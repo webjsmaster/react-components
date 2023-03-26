@@ -1,0 +1,6 @@
+.label {
+  @apply flex justify-between;
+  input {
+    @apply bg-teal-50 px-3 py-1;
+  }
+}
