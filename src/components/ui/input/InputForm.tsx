@@ -31,7 +31,6 @@ class InputForm extends Component<Props> {
       message = genMessage(reference.current?.type);
     }
 
-
     return (
       <label className={resultValidation ? scss.label : cn(scss.label, scss.labelError)}>
         {children}

@@ -1,12 +1,10 @@
-import { describe, it, vi } from 'vitest';
+import { describe, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import InputForm from '../src/components/ui/input/InputForm';
 
 describe('InputTextElement', () => {
   const ref = React.createRef<HTMLInputElement>();
-
-  const onChangeInput = vi.fn();
 
   const validation = {
     text: true,
