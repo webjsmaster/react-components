@@ -1,0 +1,52 @@
+.wrapper {
+  @apply block flex justify-center my-10;
+  .content {
+    @apply w-6/12 h-4/6
+    bg-teal-500 rounded-xl shadow-card
+    flex items-center justify-center p-5;
+  }
+
+  label {
+    @apply text-gray-700 flex items-center;
+  }
+
+  .checkbox {
+    @apply w-6 h-6;
+  }
+
+  .radio {
+    @apply w-6 h-6;
+  }
+
+  .file {
+  }
+
+  select {
+    @apply bg-teal-50 px-5 py-2 rounded-lg w-8/12 text-gray-500;
+    > option {
+      @apply mx-5 my-2 text-gray-700;
+    }
+
+
+  }
+
+  .selectBlock {
+    @apply flex items-center justify-between relative;
+    .errorMessage {
+      @apply absolute text-red-500 text-sm bottom-[-22px] right-0;
+    }
+  }
+
+  input {
+    @apply text-gray-500 ml-4;
+  }
+
+  .form {
+    @apply flex flex-col gap-6;
+  }
+
+}
+
+.cardBlock {
+  @apply flex gap-10 flex-wrap;
+}

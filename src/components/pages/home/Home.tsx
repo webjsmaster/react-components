@@ -8,7 +8,7 @@ class Home extends React.Component {
   render() {
     return (
       <Layout>
-        <nav className={scss.wrapper}>
+        <nav className={scss.wrapper} data-testid="home-page">
           {cards.map((t: ICard) => (
             <Card
               key={t.id}

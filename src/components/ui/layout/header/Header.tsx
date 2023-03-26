@@ -3,7 +3,7 @@ import scss from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { ERROR_ROUTE, HOME_ROUTE } from '../../../../utils/consts';
 import logo from './../../../../image/logo-nodejs.png';
-import { Input } from './input/Input';
+import { InputHeader } from './input/InputHeader';
 import { routes } from '../../../router/routes';
 import ItemMenu from './itemMenu/ItemMenu';
 
@@ -16,7 +16,7 @@ export class Header extends Component {
           <Link to={HOME_ROUTE} className={scss.logo}>
             <img src={logo} alt="logo" />
           </Link>
-          <Input />
+          <InputHeader />
           <nav className={scss.menu}>
             <ul>
               {routes

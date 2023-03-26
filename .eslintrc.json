@@ -25,7 +25,8 @@
     "@typescript-eslint",
     "react",
     "prettier",
-    "react-hooks"
+    "react-hooks",
+    "eslint-plugin-prettier"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
