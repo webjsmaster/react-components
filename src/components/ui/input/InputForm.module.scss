@@ -1,6 +1,16 @@
 .label {
-  @apply flex justify-between;
+  @apply flex justify-between relative;
   input {
-    @apply bg-teal-50 px-3 py-1;
+    @apply bg-teal-50 px-3 py-1 rounded-lg;
+  }
+
+  .errorMessage {
+    @apply absolute text-red-500 text-sm bottom-[-22px] right-0
+  }
+}
+
+.labelError {
+  input {
+    @apply border-2 border-red-500;
   }
 }

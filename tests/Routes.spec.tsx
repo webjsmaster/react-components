@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import AppRouter from '../src/components/router/Router';
 import { MemoryRouter } from 'react-router-dom';
+
 describe('Routing', () => {
   it('renders Main component on root path', () => {
     render(
@@ -20,6 +21,16 @@ describe('Routing', () => {
       </MemoryRouter>
     );
     const aboutUsElement = screen.getByTestId('about-page');
+    expect(aboutUsElement).toBeInTheDocument();
+  });
+
+  it('renders Form component on /form path', () => {
+    render(
+      <MemoryRouter initialEntries={['/form']}>
+        <AppRouter />
+      </MemoryRouter>
+    );
+    const aboutUsElement = screen.getByTestId('form-page');
     expect(aboutUsElement).toBeInTheDocument();
   });
 

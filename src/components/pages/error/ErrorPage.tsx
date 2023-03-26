@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import scss from './ErrorPage.module.scss';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE } from '../../../utils/consts';

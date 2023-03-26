@@ -4,14 +4,14 @@ import Card from '../src/components/pages/home/card/Card';
 const MOCK_DATA = {
   id: 6,
   name: 'Sixth',
-  description: 'This is sixth card',
+  description: 'This is sixth card-form',
   poster: 'tsg',
   like: 22,
   view: 567,
 };
 
 describe('Cards list test', () => {
-  it('should render card', () => {
+  it('should render card-form', () => {
     const host = document.createElement('div');
     document.body.appendChild(host);
     const instance = new Card(MOCK_DATA);
