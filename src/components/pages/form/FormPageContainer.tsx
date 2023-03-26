@@ -17,24 +17,7 @@ class FormPageContainer extends Component {
     student: false,
     work: false,
     image: '',
-    card: [
-      {
-        checkbox: false,
-        date: '2023-03-08',
-        image: 'https://klike.net/uploads/posts/2023-01/1674543731_3-86.jpg',
-        name: 'Mock',
-        radio: false,
-        select: 'green',
-      },
-      {
-        checkbox: false,
-        date: '2023-03-08',
-        image: 'https://klike.net/uploads/posts/2023-01/1674543731_3-86.jpg',
-        name: 'Mock',
-        radio: true,
-        select: 'green',
-      },
-    ],
+    card: [],
     validation: {
       text: true,
       date: true,
@@ -100,10 +83,6 @@ class FormPageContainer extends Component {
       this.setState({ card: [...this.state.card!, newCard] });
       this.handleReset();
     }
-  }
-
-  componentDidUpdate() {
-    console.log(this.state.card);
   }
 
   handleReset() {

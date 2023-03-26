@@ -6,8 +6,6 @@ import cn from 'classnames';
 class CardForm extends Component<ICardForm> {
   render() {
     const { props } = this.props;
-    console.log('📌:', props);
-
     return (
       <div className={cn(scss.wrapper, scss[props.select])}>
         <div className={scss.name}>{props.name}</div>

@@ -31,13 +31,12 @@ class InputForm extends Component<Props> {
       message = genMessage(reference.current?.type);
     }
 
-    console.log('📌:', validation);
 
     return (
       <label className={resultValidation ? scss.label : cn(scss.label, scss.labelError)}>
         {children}
-        <input {...rest} ref={reference} />
-        <div className={scss.errorMessage}>{message}</div>
+        <input id={this.props.type} ref={reference} {...rest} />
+        {!resultValidation && <div className={scss.errorMessage}>{message}</div>}
       </label>
     );
   }

@@ -2,7 +2,7 @@ export function genMessage(type: string) {
   let res = '';
   switch (type) {
     case 'text': {
-      res = 'The length > 1 and < 15 ';
+      res = 'The length > 1 and < 15';
       break;
     }
     case 'date': {
