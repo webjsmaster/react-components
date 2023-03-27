@@ -1,0 +1,50 @@
+.wrapper {
+  @apply w-56 h-72 rounded-lg p-4 shadow-card text-gray-700;
+}
+
+.name {
+  @apply text-center py-2;
+}
+
+.image {
+  @apply rounded-lg overflow-hidden h-[150px] flex items-center justify-center;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.check {
+  @apply flex justify-between py-2;
+  .checkbox {
+    @apply text-red-700;
+  }
+
+  .checkboxActive {
+    @apply text-green-700;
+  }
+
+  .radio {
+    @apply text-red-700;
+  }
+
+  .radioActive {
+    @apply text-green-700;
+  }
+}
+
+.date {
+  @apply text-center;
+}
+
+.green {
+  @apply bg-green-300;
+}
+
+.yellow {
+  @apply bg-yellow-300;
+}
+
+.blue {
+  @apply bg-blue-300;
+}

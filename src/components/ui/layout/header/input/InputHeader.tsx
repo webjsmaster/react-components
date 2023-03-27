@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import scss from './Input.module.scss';
+import scss from './InputHeader.module.scss';
 
-export class Input extends Component {
+export class InputHeader extends Component {
   public readonly state: { input: string } = {
     input: '',
   };
@@ -25,7 +25,7 @@ export class Input extends Component {
         <input
           type="text"
           value={this.state.input}
-          placeholder={'Input for search'}
+          placeholder={'InputHeader for search'}
           className={scss.input}
           onChange={(e) => handleInput(e.target.value)}
         />
