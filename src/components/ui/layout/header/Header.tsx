@@ -3,9 +3,9 @@ import scss from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { ERROR_ROUTE, HOME_ROUTE } from '../../../../utils/consts';
 import logo from './../../../../image/logo-nodejs.png';
-import { InputHeader } from './input/InputHeader';
 import { routes } from '../../../router/routes';
 import ItemMenu from './itemMenu/ItemMenu';
+import InputHeader from './input/InputHeader';
 
 export class Header extends Component {
   render() {

@@ -1,30 +1,35 @@
-import { Component } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import scss from './InputHeader.module.scss';
 
-export class InputHeader extends Component {
-  public readonly state: { input: string } = {
-    input: '',
-  };
+const InputHeader:FC = () => {
+  const [inputValue, setInputValue] = useState<string>('')
+  const valueRef = useRef<string>()
 
-  componentDidMount() {
-    this.setState({ input: localStorage.getItem('search') });
+  useEffect ( () => {
+      if (localStorage.getItem('search')) {
+          setInputValue(localStorage.getItem('search') as string)
+      }
+  },[])
+  useEffect ( () => {
+      return () => {
+          if (typeof valueRef.current === "string") {
+              localStorage.setItem('search', valueRef.current)
+          }
+      }
+  },[])
+  const handleSearch = () => {
+      alert('Implementation stage')
   }
-
-  render() {
-    const handleInput = (value: string) => {
-      this.setState({ input: value });
-      localStorage.setItem('search', value);
-    };
-    const handleSearch = () => {
-      this.setState({ input: '' });
-      localStorage.clear();
-    };
+  const handleInput = (e:string) => {
+      valueRef.current = e
+      setInputValue(e)
+  }
 
     return (
       <div className={scss.wrapper}>
         <input
           type="text"
-          value={this.state.input}
+          value={inputValue}
           placeholder={'InputHeader for search'}
           className={scss.input}
           onChange={(e) => handleInput(e.target.value)}
@@ -45,5 +50,7 @@ export class InputHeader extends Component {
         </div>
       </div>
     );
-  }
 }
+
+
+export default InputHeader;
