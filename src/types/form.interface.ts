@@ -9,17 +9,30 @@
 //   validation: IValidation;
 // }
 
-export interface IField {
+export interface IFieldType {
+  field: 'name' | 'surname' | 'date';
+  type: 'text' | 'date';
+
+  // date: string;
+  // checkbox: boolean;
+  // radio: boolean;
+  // image: string;
+  // select: string;
+}
+
+export interface IFieldData {
+  name: string;
+  surname: string;
+}
+
+export interface ICardForm {
+  id: string;
   text: string;
   date: string;
   checkbox: boolean;
   radio: boolean;
   image: string;
   select: string;
-}
-
-export interface ICardForm extends IField {
-  id: string;
 }
 
 // export interface IValidation {

@@ -3,8 +3,9 @@ import { Layout } from '../../ui/layout/Layout';
 import scss from './FormPage.module.scss';
 import Button from '../../ui/button/Button';
 import CardFormBlock from '../../ui/card-form-block/CardFormBlock';
-import { ICardForm, IField } from '../../../types/form.interface';
+import { ICardForm, IFieldData, IFieldType } from '../../../types/form.interface';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import InputFormNew from '../../ui/input/InputFormNew';
 
 const cards: ICardForm[] = [
   {
@@ -15,6 +16,17 @@ const cards: ICardForm[] = [
     checkbox: true,
     image: 'https://supremelearning.ru/wp-content/uploads/2020/01/test-scaled.jpg',
     radio: true,
+  },
+];
+
+const inputs: IFieldType[] = [
+  {
+    field: 'name',
+    type: 'text',
+  },
+  {
+    field: 'date',
+    type: 'date',
   },
 ];
 
@@ -30,10 +42,10 @@ const FormPage: FC = () => {
     register,
     formState: { errors },
     reset,
-  } = useForm<IField>();
+  } = useForm<IFieldData>();
 
-  const onSubmit: SubmitHandler<IField> = (data) => {
-    console.log('📌:', data);
+  const onSubmit: SubmitHandler<IFieldData> = (data: IFieldData) => {
+    console.log('🌴:DATA', data);
     reset();
   };
 
@@ -51,7 +63,7 @@ const FormPage: FC = () => {
             <input
               type="text"
               placeholder="Input text"
-              {...register('text', {
+              {...register('name', {
                 required: 'Name is required field',
                 minLength: {
                   value: 3,
@@ -63,6 +75,8 @@ const FormPage: FC = () => {
                 },
               })}
             />
+            <InputFormNew type={'surname'} register={register} />
+            <InputFormNew type={'date'} register={register} />
 
             {/*{inputField.map((field) => (*/}
             {/*  <InputForm*/}
