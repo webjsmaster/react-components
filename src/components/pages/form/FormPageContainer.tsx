@@ -1,6 +1,6 @@
 import React, { Component, FormEvent } from 'react';
 import { FormPage } from '../index';
-import { ICard, IStateForm } from '../../../types/stateType';
+import { ICard, IStateForm } from '../../../types/form.interface';
 
 class FormPageContainer extends Component {
   public inputName: React.RefObject<HTMLInputElement>;

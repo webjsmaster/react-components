@@ -21,7 +21,7 @@ export const cards: ICard[] = [
   {
     id: 1,
     name: 'Thirst',
-    description: 'This is thirst card-form',
+    description: 'This is thirst card-form-block',
     poster: p1,
     like: 2,
     view: 346,
@@ -29,7 +29,7 @@ export const cards: ICard[] = [
   {
     id: 2,
     name: 'Second',
-    description: 'This is second card-form',
+    description: 'This is second card-form-block',
     poster: p2,
     like: 15,
     view: 125,
@@ -37,7 +37,7 @@ export const cards: ICard[] = [
   {
     id: 3,
     name: 'Third',
-    description: 'This is third card-form',
+    description: 'This is third card-form-block',
     poster: p3,
     like: 25,
     view: 45,
@@ -45,7 +45,7 @@ export const cards: ICard[] = [
   {
     id: 4,
     name: 'Fourth',
-    description: 'This is fourth card-form',
+    description: 'This is fourth card-form-block',
     poster: p4,
     like: 14,
     view: 34,
@@ -53,7 +53,7 @@ export const cards: ICard[] = [
   {
     id: 5,
     name: 'Fifth',
-    description: 'This is fifth card-form',
+    description: 'This is fifth card-form-block',
     poster: p5,
     like: 6,
     view: 45,
@@ -61,7 +61,7 @@ export const cards: ICard[] = [
   {
     id: 6,
     name: 'Sixth',
-    description: 'This is sixth card-form',
+    description: 'This is sixth card-form-block',
     poster: p6,
     like: 22,
     view: 567,
@@ -69,7 +69,7 @@ export const cards: ICard[] = [
   {
     id: 7,
     name: 'Seventh',
-    description: 'This is seventh card-form',
+    description: 'This is seventh card-form-block',
     poster: p7,
     like: 8,
     view: 67,
@@ -77,7 +77,7 @@ export const cards: ICard[] = [
   {
     id: 8,
     name: 'Eighth',
-    description: 'This is eighth card-form',
+    description: 'This is eighth card-form-block',
     poster: p8,
     like: 26,
     view: 124,
@@ -85,7 +85,7 @@ export const cards: ICard[] = [
   {
     id: 9,
     name: 'Ninth',
-    description: 'This is ninth card-form',
+    description: 'This is ninth card-form-block',
     poster: p9,
     like: 26,
     view: 33,

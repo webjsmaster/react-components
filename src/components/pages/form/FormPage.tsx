@@ -1,97 +1,122 @@
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import { Layout } from '../../ui/layout/Layout';
 import scss from './FormPage.module.scss';
-import { inputField, IOption, options } from '../../../utils/consts';
-import InputForm from '../../ui/input/InputForm';
-import { IFormPageProps } from '../../../types/propsType';
 import Button from '../../ui/button/Button';
-import { ICard } from '../../../types/stateType';
-import cn from 'classnames';
-import { genMessage } from '../../../utils/genMessage';
-import CardForm from '../../ui/card-form/CardForm';
+import CardFormBlock from '../../ui/card-form-block/CardFormBlock';
+import { ICardForm, IField } from '../../../types/form.interface';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-class FormPage extends Component<IFormPageProps> {
-  render() {
-    const {
-      selectRef,
-      nameRef,
-      dateRef,
-      radioRef,
-      fileRef,
-      checkRef,
-      state,
-      handleSubmit,
-      handleReset,
-      formRef,
-    } = this.props;
+const cards: ICardForm[] = [
+  {
+    id: '1',
+    text: 'test',
+    select: 'green',
+    date: '2023-23-56',
+    checkbox: true,
+    image: 'https://supremelearning.ru/wp-content/uploads/2020/01/test-scaled.jpg',
+    radio: true,
+  },
+];
 
-    let message = '';
-    const validationSelect = state.validation.select;
-    if (!state.validation.select) {
-      message = genMessage('select');
-    }
-    return (
-      <Layout>
-        <div className={scss.wrapper} data-testid="form-page">
-          <div className={scss.content}>
-            <form onSubmit={handleSubmit.bind(this)} className={scss.form} ref={formRef}>
-              {inputField.map((field) => (
-                <InputForm
-                  key={field.type}
-                  type={field.type}
-                  reference={
-                    field.type === 'input'
-                      ? nameRef
-                      : field.type === 'date'
-                      ? dateRef
-                      : field.type === 'checkbox'
-                      ? checkRef
-                      : field.type === 'radio'
-                      ? radioRef
-                      : fileRef
-                  }
-                  className={
-                    state.validation[field.type]
-                      ? scss[field.type]
-                      : cn(scss[field.type], scss.error)
-                  }
-                  validation={state.validation}
-                >
-                  {field.label}
-                </InputForm>
-              ))}
-              <div className={scss.selectBlock}>
-                <label htmlFor="select">Border Color</label>
-                <select
-                  name="select"
-                  id="select"
-                  ref={selectRef}
-                  className={!validationSelect ? 'border-2 border-red-500' : ''}
-                >
-                  <option></option>
-                  {options.map((option: IOption) => (
-                    <option value={option.value} key={option.value}>
-                      {option.title}
-                    </option>
-                  ))}
-                </select>
-                <div className={scss.errorMessage}>{message}</div>
-              </div>
-              <Button type="submit">Submit</Button>
-              <Button type="button" onClick={handleReset}>
-                Reset
-              </Button>
-            </form>
-          </div>
+const FormPage: FC = () => {
+  // let message = '';
+  // const validationSelect = state.validation.select;
+  // if (!state.validation.select) {
+  //   message = genMessage('select');
+  // }
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    reset,
+  } = useForm<IField>();
+
+  const onSubmit: SubmitHandler<IField> = (data) => {
+    console.log('📌:', data);
+    reset();
+  };
+
+  const handleReset = () => {
+    reset();
+  };
+
+  console.log('📌:ERRORS', errors);
+
+  return (
+    <Layout>
+      <div className={scss.wrapper} data-testid="form-page">
+        <div className={scss.content}>
+          <form className={scss.form} onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              placeholder="Input text"
+              {...register('text', {
+                required: 'Name is required field',
+                minLength: {
+                  value: 3,
+                  message: 'Min length 3 symbols',
+                },
+                maxLength: {
+                  value: 15,
+                  message: 'Max length 15 symbols',
+                },
+              })}
+            />
+
+            {/*{inputField.map((field) => (*/}
+            {/*  <InputForm*/}
+            {/*    key={field.type}*/}
+            {/*    type={field.type}*/}
+            {/*    reference={*/}
+            {/*      field.type === "input"*/}
+            {/*        ? nameRef*/}
+            {/*        : field.type === "date"*/}
+            {/*          ? dateRef*/}
+            {/*          : field.type === "checkbox"*/}
+            {/*            ? checkRef*/}
+            {/*            : field.type === "radio"*/}
+            {/*              ? radioRef*/}
+            {/*              : fileRef*/}
+            {/*    }*/}
+            {/*    className={*/}
+            {/*      state.validation[field.type]*/}
+            {/*        ? scss[field.type]*/}
+            {/*        : cn(scss[field.type], scss.error)*/}
+            {/*    }*/}
+            {/*    validation={state.validation}*/}
+            {/*  >*/}
+            {/*    {field.label}*/}
+            {/*  </InputForm>*/}
+            {/*))}*/}
+
+            {/*<div className={scss.selectBlock}>*/}
+            {/*  <label htmlFor="select">Border Color</label>*/}
+            {/*  <select*/}
+            {/*    name="select"*/}
+            {/*    id="select"*/}
+            {/*    ref={selectRef}*/}
+            {/*    className={!validationSelect ? 'border-2 border-red-500' : ''}*/}
+            {/*  >*/}
+            {/*    <option></option>*/}
+            {/*    {options.map((option: IOption) => (*/}
+            {/*      <option value={option.value} key={option.value}>*/}
+            {/*        {option.title}*/}
+            {/*      </option>*/}
+            {/*    ))}*/}
+            {/*  </select>*/}
+            {/*<div className={scss.errorMessage}>{message}</div>*/}
+            {/*</div>*/}
+            <Button type="submit">Submit</Button>
+            <Button type="button" onClick={handleReset}>
+              Reset
+            </Button>
+          </form>
         </div>
-        <div className={scss.cardBlock}>
-          {state.card.map((card: ICard) => (
-            <CardForm key={card.name} props={card} />
-          ))}
-        </div>
-      </Layout>
-    );
-  }
-}
+      </div>
+      <CardFormBlock cards={cards} />
+    </Layout>
+  );
+};
 
 export default FormPage;

@@ -1,6 +1,6 @@
 import React, { Component, PropsWithChildren } from 'react';
 import scss from './InputForm.module.scss';
-import { IValidation } from '../../../types/stateType';
+import { IValidation } from '../../../types/form.interface';
 import { genMessage } from '../../../utils/genMessage';
 import cn from 'classnames';
 
