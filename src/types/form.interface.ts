@@ -9,9 +9,12 @@
 //   validation: IValidation;
 // }
 
+export type FieldType = 'name' | 'surname' | 'date' | 'file';
+export type InputType = 'text' | 'date' | 'file';
+
 export interface IFieldType {
-  field: 'name' | 'surname' | 'date';
-  type: 'text' | 'date';
+  field: FieldType;
+  type: InputType;
 
   // date: string;
   // checkbox: boolean;
@@ -23,6 +26,9 @@ export interface IFieldType {
 export interface IFieldData {
   name: string;
   surname: string;
+  date: string;
+  file: string;
+  select: string;
 }
 
 export interface ICardForm {
@@ -33,6 +39,14 @@ export interface ICardForm {
   radio: boolean;
   image: string;
   select: string;
+}
+
+export interface ISelectedField {
+  options: any;
+  // value: any;
+  className: any;
+  control: any;
+  onChange: (value: () => void) => void;
 }
 
 // export interface IValidation {

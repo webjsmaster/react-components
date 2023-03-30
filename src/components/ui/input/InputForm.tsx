@@ -1,44 +1,71 @@
-import React, { Component, PropsWithChildren } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { UseFormRegister } from 'react-hook-form';
+import { FieldType, IFieldData, InputType } from '../../../types/form.interface';
 import scss from './InputForm.module.scss';
-import { IValidation } from '../../../types/form.interface';
-import { genMessage } from '../../../utils/genMessage';
-import cn from 'classnames';
 
-interface Props extends PropsWithChildren {
-  reference: React.RefObject<HTMLInputElement>;
-  type: string;
-  className?: string;
-  validation: IValidation;
-}
+const InputForm: FC<{
+  type: FieldType;
+  register: UseFormRegister<IFieldData>;
+}> = ({ type, register }) => {
+  const [inputType, setInputType] = useState<InputType>('text');
 
-class InputForm extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    const { reference, validation, children, ...rest } = this.props;
-    let resultValidation = true;
-    for (const key in validation as IValidation) {
-      key === reference.current?.type
-        ? (resultValidation = validation[key as keyof typeof validation])
-        : true;
+  useEffect(() => {
+    switch (type) {
+      case 'date':
+        setInputType('date');
+        break;
+      case 'file':
+        setInputType('file');
+        break;
+      default:
+        setInputType('text');
     }
+  }, []);
 
-    let message = '';
-
-    if (reference.current?.type && !resultValidation) {
-      message = genMessage(reference.current?.type);
-    }
-
-    return (
-      <label className={resultValidation ? scss.label : cn(scss.label, scss.labelError)}>
-        {children}
-        <input id={this.props.type} ref={reference} {...rest} />
-        {!resultValidation && <div className={scss.errorMessage}>{message}</div>}
-      </label>
-    );
-  }
-}
+  return (
+    <label className={scss.label}>
+      {type === 'name' ? (
+        <input
+          type={inputType}
+          placeholder="Input name"
+          {...register(type, {
+            required: 'Name is required field',
+            minLength: {
+              value: 1,
+              message: 'Min length 3 symbols',
+            },
+            maxLength: {
+              value: 15,
+              message: 'Max length 15 symbols',
+            },
+          })}
+        />
+      ) : type === 'surname' ? (
+        <input
+          type={inputType}
+          placeholder="Input surname"
+          {...register(type, {
+            required: 'Surname is required field',
+            minLength: {
+              value: 1,
+              message: 'Min length 1 symbols',
+            },
+            maxLength: {
+              value: 15,
+              message: 'Max length 15 symbols',
+            },
+          })}
+        />
+      ) : (
+        <input
+          type={inputType}
+          {...register(type, {
+            required: 'Date is required field',
+          })}
+        />
+      )}
+    </label>
+  );
+};
 
 export default InputForm;

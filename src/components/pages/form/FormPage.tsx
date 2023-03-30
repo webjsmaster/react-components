@@ -1,11 +1,14 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { Layout } from '../../ui/layout/Layout';
 import scss from './FormPage.module.scss';
 import Button from '../../ui/button/Button';
 import CardFormBlock from '../../ui/card-form-block/CardFormBlock';
 import { ICardForm, IFieldData, IFieldType } from '../../../types/form.interface';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import InputFormNew from '../../ui/input/InputFormNew';
+import InputForm from '../../ui/input/InputForm';
+import InputFormFile from '../../ui/input/InputFormFile';
+import SelectedField from '../../ui/input-select/SelectedField';
+import { options } from '../../../utils/consts';
 
 const cards: ICardForm[] = [
   {
@@ -31,17 +34,15 @@ const inputs: IFieldType[] = [
 ];
 
 const FormPage: FC = () => {
-  // let message = '';
-  // const validationSelect = state.validation.select;
-  // if (!state.validation.select) {
-  //   message = genMessage('select');
-  // }
+  const [image, setImage] = useState<string>('');
 
   const {
     handleSubmit,
     register,
     formState: { errors },
     reset,
+    control,
+    setValue,
   } = useForm<IFieldData>();
 
   const onSubmit: SubmitHandler<IFieldData> = (data: IFieldData) => {
@@ -53,6 +54,25 @@ const FormPage: FC = () => {
     reset();
   };
 
+  const onChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setImage(URL.createObjectURL(file as Blob));
+  };
+
+  const onChangeSelect = () => {
+    console.log('📌:');
+  };
+
+  const handleFillData = () => {
+    const mockFile = new File(['test'], 'test.png', { type: 'image/png' });
+    const file = URL.createObjectURL(mockFile as Blob);
+    setValue('name', 'Ivan');
+    setValue('surname', 'Ivanov');
+    setValue('date', '2023-03-30');
+    setValue('select', 'green');
+    setValue('file', file);
+  };
+
   console.log('📌:ERRORS', errors);
 
   return (
@@ -60,70 +80,22 @@ const FormPage: FC = () => {
       <div className={scss.wrapper} data-testid="form-page">
         <div className={scss.content}>
           <form className={scss.form} onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="text"
-              placeholder="Input text"
-              {...register('name', {
-                required: 'Name is required field',
-                minLength: {
-                  value: 3,
-                  message: 'Min length 3 symbols',
-                },
-                maxLength: {
-                  value: 15,
-                  message: 'Max length 15 symbols',
-                },
-              })}
+            <InputForm type={'name'} register={register} />
+            <InputForm type={'surname'} register={register} />
+            <InputForm type={'date'} register={register} />
+            <InputFormFile register={register} onChange={onChangeFile} />
+            <SelectedField
+              options={options}
+              className="rounded-xl"
+              onChange={onChangeSelect}
+              control={control}
             />
-            <InputFormNew type={'surname'} register={register} />
-            <InputFormNew type={'date'} register={register} />
-
-            {/*{inputField.map((field) => (*/}
-            {/*  <InputForm*/}
-            {/*    key={field.type}*/}
-            {/*    type={field.type}*/}
-            {/*    reference={*/}
-            {/*      field.type === "input"*/}
-            {/*        ? nameRef*/}
-            {/*        : field.type === "date"*/}
-            {/*          ? dateRef*/}
-            {/*          : field.type === "checkbox"*/}
-            {/*            ? checkRef*/}
-            {/*            : field.type === "radio"*/}
-            {/*              ? radioRef*/}
-            {/*              : fileRef*/}
-            {/*    }*/}
-            {/*    className={*/}
-            {/*      state.validation[field.type]*/}
-            {/*        ? scss[field.type]*/}
-            {/*        : cn(scss[field.type], scss.error)*/}
-            {/*    }*/}
-            {/*    validation={state.validation}*/}
-            {/*  >*/}
-            {/*    {field.label}*/}
-            {/*  </InputForm>*/}
-            {/*))}*/}
-
-            {/*<div className={scss.selectBlock}>*/}
-            {/*  <label htmlFor="select">Border Color</label>*/}
-            {/*  <select*/}
-            {/*    name="select"*/}
-            {/*    id="select"*/}
-            {/*    ref={selectRef}*/}
-            {/*    className={!validationSelect ? 'border-2 border-red-500' : ''}*/}
-            {/*  >*/}
-            {/*    <option></option>*/}
-            {/*    {options.map((option: IOption) => (*/}
-            {/*      <option value={option.value} key={option.value}>*/}
-            {/*        {option.title}*/}
-            {/*      </option>*/}
-            {/*    ))}*/}
-            {/*  </select>*/}
-            {/*<div className={scss.errorMessage}>{message}</div>*/}
-            {/*</div>*/}
             <Button type="submit">Submit</Button>
             <Button type="button" onClick={handleReset}>
               Reset
+            </Button>
+            <Button type="button" onClick={handleFillData}>
+              Fill Data
             </Button>
           </form>
         </div>

@@ -33,20 +33,20 @@ export const inputField: IInputField[] = [
 
 export interface IOption {
   value: string;
-  title: string;
+  label: string;
 }
 
 export const options: IOption[] = [
   {
     value: 'blue',
-    title: 'Blue',
+    label: 'Blue',
   },
   {
     value: 'green',
-    title: 'Green',
+    label: 'Green',
   },
   {
     value: 'yellow',
-    title: 'Yellow',
+    label: 'Yellow',
   },
 ];
