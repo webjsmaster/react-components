@@ -16,9 +16,9 @@ describe('InputTextElement', () => {
     );
   });
 
-  it('Check input element', () => {
+  it('Check first-input element', () => {
     const formElement = screen.getByTestId('form-page');
-    inputElement = formElement.querySelector('#input') as HTMLInputElement;
+    inputElement = formElement.querySelector('#firstText') as HTMLInputElement;
     expect(inputElement).toBeInTheDocument();
   });
 
@@ -34,11 +34,22 @@ describe('InputTextElement', () => {
 
   it('User change input error validation', async () => {
     const formElement = screen.getByTestId('form-page');
-    inputElement = formElement.querySelector('#input') as HTMLInputElement;
+    inputElement = formElement.querySelector('#firstText') as HTMLInputElement;
     fireEvent.change(inputElement, { target: { value: 'оченьоченьмногобукв' } });
     buttonElement = await screen.getByText('Submit');
     fireEvent.click(buttonElement);
-    const errorMessage = await screen.findByText('The length > 1 and < 15');
+    const errorMessage = await screen.findByText('Max length 15 symbols');
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  it('User change input file', async () => {
+    const image = new File([''], 'picture.png', { type: 'image/png' });
+    const input = screen.getByLabelText(/File/i);
+    expect(input).toBeInTheDocument();
+    fireEvent.change(input, image);
+    buttonElement = await screen.getByText('Submit');
+    fireEvent.click(buttonElement);
+    const errorMessage = await screen.findByText('file is required field');
     expect(errorMessage).toBeInTheDocument();
   });
 });

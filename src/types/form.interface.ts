@@ -15,7 +15,7 @@ export interface IFieldData {
   firstText: string;
   secondText: string;
   date: string;
-  file: FileList;
+  file?: FileList;
   select: string;
   checkbox: boolean;
   radio: 'first' | 'second';

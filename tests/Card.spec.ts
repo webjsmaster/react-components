@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import Card from '../src/components/pages/home/card/Card';
 
-const MOCK_DATA = {
+const MOCK_DATA: {
+  id: number;
+  name: string;
+  description: string;
+  poster: string;
+  like: number;
+  view: number;
+} = {
   id: 6,
   name: 'Sixth',
   description: 'This is sixth card-form-block',
@@ -14,7 +21,7 @@ describe('Cards list test', () => {
   it('should render card-form-block', () => {
     const host = document.createElement('div');
     document.body.appendChild(host);
-    const instance = new Card(MOCK_DATA);
+    const instance = Card(MOCK_DATA);
     expect(instance).toBeTruthy();
   });
 });

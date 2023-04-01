@@ -30,13 +30,14 @@ const InputField: FC<IInputFile> = ({ type, register, children, error }) => {
       {children}
       {type === 'firstText' ? (
         <input
+          id={`${type}`}
           type={inputType}
           placeholder="Input text"
           {...register(type, {
             required: `${type} is required field`,
             minLength: {
-              value: 1,
-              message: 'Min length 3 symbols',
+              value: 2,
+              message: 'Min length 2 symbols',
             },
             maxLength: {
               value: 15,
@@ -46,13 +47,14 @@ const InputField: FC<IInputFile> = ({ type, register, children, error }) => {
         />
       ) : type === 'secondText' ? (
         <input
+          id={`${type}`}
           type={inputType}
           placeholder="Input text"
           {...register(type, {
             required: `${type} is required field`,
             minLength: {
-              value: 1,
-              message: 'Min length 1 symbols',
+              value: 2,
+              message: 'Min length 2 symbols',
             },
             maxLength: {
               value: 15,
@@ -62,6 +64,7 @@ const InputField: FC<IInputFile> = ({ type, register, children, error }) => {
         />
       ) : type === 'file' ? (
         <input
+          id={`${type}`}
           type={inputType}
           {...register(type, {
             validate: {
@@ -72,6 +75,7 @@ const InputField: FC<IInputFile> = ({ type, register, children, error }) => {
         />
       ) : (
         <input
+          id={`${type}`}
           type={inputType}
           {...register(type, {
             required: `${type} is required field`,

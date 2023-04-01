@@ -23,10 +23,14 @@ const FormPage: FC = () => {
     control,
   } = useForm<IFieldData>({
     mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<IFieldData> = (data: IFieldData) => {
     const image = URL.createObjectURL(data.file[0]);
+
+    console.log('📌:', data);
+
     setCards([...cards!, { ...data, id: uuidv4(), img: image }]);
     reset();
     alert('Card created!');

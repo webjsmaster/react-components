@@ -5,7 +5,7 @@ describe('Cards list test', () => {
   it('should render homepage with cards list', () => {
     const host = document.createElement('div');
     document.body.appendChild(host);
-    const instance = new Home('');
+    const instance = Home();
     expect(instance).toBeTruthy();
   });
 });
