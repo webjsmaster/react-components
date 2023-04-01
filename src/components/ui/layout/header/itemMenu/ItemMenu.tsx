@@ -1,4 +1,4 @@
-import React, { Component, PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
 interface IProps extends PropsWithChildren {
@@ -6,18 +6,12 @@ interface IProps extends PropsWithChildren {
   className: string;
 }
 
-class ItemMenu extends Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <li className={this.props.className}>
-        <Link to={this.props.route}>{this.props.children}</Link>
-      </li>
-    );
-  }
+function ItemMenu(props: IProps) {
+  return (
+    <li className={props.className}>
+      <Link to={props.route}>{props.children}</Link>
+    </li>
+  );
 }
 
 export default ItemMenu;

@@ -1,57 +1,40 @@
-// export interface IStateForm {
-//   name: string;
-//   date: string;
-//   student: boolean;
-//   work: boolean;
-//   image: string;
-//   course: string;
-//   card?: ICard[];
-//   validation: IValidation;
-// }
+import { IOption } from '../utils/consts';
+import { Control, FieldError } from 'react-hook-form';
+import { PropsWithChildren } from 'react';
 
-export type FieldType = 'name' | 'surname' | 'date' | 'file';
+// export type FieldType = 'firstText' | 'secondText' | 'date' | 'file';
+export type FieldType = keyof IFieldData;
 export type InputType = 'text' | 'date' | 'file';
 
 export interface IFieldType {
   field: FieldType;
   type: InputType;
-
-  // date: string;
-  // checkbox: boolean;
-  // radio: boolean;
-  // image: string;
-  // select: string;
 }
 
 export interface IFieldData {
-  name: string;
-  surname: string;
+  firstText: string;
+  secondText: string;
   date: string;
-  file: string;
+  file: FileList;
   select: string;
-}
-
-export interface ICardForm {
-  id: string;
-  text: string;
-  date: string;
   checkbox: boolean;
-  radio: boolean;
-  image: string;
-  select: string;
+  radio: 'first' | 'second';
+  img?: string;
 }
 
-export interface ISelectedField {
-  options: any;
-  // value: any;
-  className: any;
-  control: any;
-  onChange: (value: () => void) => void;
+export interface ICardForm extends IFieldData {
+  id: string;
+  // firstText: string;
+  // secondText: string;
+  // date: string;
+  // checkbox: boolean;
+  // radio: boolean;
+  // file: string;
+  // select: string;
 }
 
-// export interface IValidation {
-//   text: boolean;
-//   date: boolean;
-//   file: boolean;
-//   select: boolean;
-// }
+export interface ISelectedField extends PropsWithChildren {
+  options: IOption[];
+  control: Control<IFieldData>;
+  error: FieldError | undefined;
+}

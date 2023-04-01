@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { ICardForm } from 'types/form.interface';
 import scss from './CardFormBlock.module.scss';
 import cn from 'classnames';
 
-function CardFormBlock(props: { cards: ICardForm[] }) {
+const CardFormBlock: FC<{ cards: ICardForm[] }> = ({ cards }) => {
   return (
     <div className={scss.cardBlock}>
-      {props.cards &&
-        props.cards.map((card: ICardForm) => (
-          <div key={card.text} className={cn(scss.wrapper, scss[card.select])}>
-            <div className={scss.name}>{card.text}</div>
+      {cards &&
+        cards.map((card: ICardForm) => (
+          <div key={card.id} className={cn(scss.wrapper, scss[card.select])}>
+            <div className={scss.textBlock}>
+              <div className={scss.name}>{card.firstText}</div>
+              <div className={scss.name}>{card.secondText}</div>
+            </div>
             <div className={scss.image}>
-              <img src={card.image} alt={card.text} />
+              <img src={card.img} alt={card.firstText} />
             </div>
             <div className={scss.check}>
               <div
                 className={card.checkbox ? cn(scss.checkbox, scss.checkboxActive) : scss.checkbox}
               >
-                Checkbox
+                Checkbox true
               </div>
-              <div className={card.radio ? cn(scss.radio, scss.radioActive) : scss.radio}>
-                Radio
+              <div
+                className={card.radio === 'first' ? cn(scss.radio, scss.radioActive) : scss.radio}
+              >
+                {card.radio.charAt(0).toUpperCase() + card.radio.slice(1)}
               </div>
             </div>
             <div className={scss.date}>{card.date}</div>
@@ -28,6 +33,6 @@ function CardFormBlock(props: { cards: ICardForm[] }) {
         ))}
     </div>
   );
-}
+};
 
 export default CardFormBlock;

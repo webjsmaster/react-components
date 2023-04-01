@@ -1,12 +1,15 @@
-import React, { FC, useEffect, useState } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
+import { FieldError, UseFormRegister } from 'react-hook-form';
 import { FieldType, IFieldData, InputType } from '../../../types/form.interface';
-import scss from './InputForm.module.scss';
+import scss from './InputField.module.scss';
 
-const InputForm: FC<{
+interface IInputFile extends PropsWithChildren {
   type: FieldType;
   register: UseFormRegister<IFieldData>;
-}> = ({ type, register }) => {
+  error: FieldError | undefined;
+}
+
+const InputField: FC<IInputFile> = ({ type, register, children, error }) => {
   const [inputType, setInputType] = useState<InputType>('text');
 
   useEffect(() => {
@@ -20,16 +23,17 @@ const InputForm: FC<{
       default:
         setInputType('text');
     }
-  }, []);
+  }, [type]);
 
   return (
     <label className={scss.label}>
-      {type === 'name' ? (
+      {children}
+      {type === 'firstText' ? (
         <input
           type={inputType}
-          placeholder="Input name"
+          placeholder="Input text"
           {...register(type, {
-            required: 'Name is required field',
+            required: `${type} is required field`,
             minLength: {
               value: 1,
               message: 'Min length 3 symbols',
@@ -40,12 +44,12 @@ const InputForm: FC<{
             },
           })}
         />
-      ) : type === 'surname' ? (
+      ) : type === 'secondText' ? (
         <input
           type={inputType}
-          placeholder="Input surname"
+          placeholder="Input text"
           {...register(type, {
-            required: 'Surname is required field',
+            required: `${type} is required field`,
             minLength: {
               value: 1,
               message: 'Min length 1 symbols',
@@ -56,16 +60,27 @@ const InputForm: FC<{
             },
           })}
         />
+      ) : type === 'file' ? (
+        <input
+          type={inputType}
+          {...register(type, {
+            validate: {
+              empty: (v) => v.length > 0 || `${type} is required field`,
+              type: (v) => (v.length > 0 && v[0].type.startsWith('image')) || 'Should be a image',
+            },
+          })}
+        />
       ) : (
         <input
           type={inputType}
           {...register(type, {
-            required: 'Date is required field',
+            required: `${type} is required field`,
           })}
         />
       )}
+      {error && <div className={scss.errorMessage}>{error.message}</div>}
     </label>
   );
 };
 
-export default InputForm;
+export default InputField;

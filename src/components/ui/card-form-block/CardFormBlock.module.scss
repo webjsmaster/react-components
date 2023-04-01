@@ -1,13 +1,21 @@
-.wrapper {
-  @apply w-56 h-72 rounded-lg p-4 shadow-card text-gray-700;
+.cardBlock {
+  @apply flex gap-6 flex-wrap justify-center;
 }
 
-.name {
-  @apply text-center py-2;
+
+.wrapper {
+  @apply w-56 h-72 rounded-lg shadow-card text-gray-700 p-2;
+
+  .textBlock {
+    @apply flex flex-col;
+    .name {
+      @apply text-center;
+    }
+  }
 }
 
 .image {
-  @apply rounded-lg overflow-hidden h-[150px] flex items-center justify-center;
+  @apply rounded-3xl overflow-hidden h-[150px] flex items-center justify-center;
   img {
     max-width: 100%;
     max-height: 100%;

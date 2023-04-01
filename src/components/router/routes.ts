@@ -1,6 +1,6 @@
 import { IRoute } from '../../types/routerType';
 import { ABOUT_ROUTE, ERROR_ROUTE, FORM_ROUTE, HOME_ROUTE } from '../../utils/consts';
-import { About, ErrorPage, FormPageContainer, Home } from '../pages';
+import { About, ErrorPage, FormPage, Home } from '../pages';
 
 export const routes: IRoute[] = [
   {
@@ -19,7 +19,7 @@ export const routes: IRoute[] = [
   },
   {
     path: FORM_ROUTE,
-    Page: FormPageContainer,
+    Page: FormPage,
     name: 'Form',
   },
 ];

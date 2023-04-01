@@ -21,6 +21,7 @@ module.exports = {
       boxShadow: {
         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
         'card': '-5px 5px 10px 5px rgba(0, 0, 0, 0.3)',
+        'radio': '0px 0px 5px 5px rgba(0, 0, 0, 0.3)',
       },
       fontFamily: {
         'ubuntu': '\'Ubuntu\', sans-serif',

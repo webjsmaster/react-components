@@ -1,7 +1,7 @@
 .wrapper {
   @apply block flex justify-center my-10;
   .content {
-    @apply w-6/12 h-4/6
+    @apply w-full h-4/6
     bg-teal-500 rounded-xl shadow-card
     flex items-center justify-center p-5;
   }
@@ -38,11 +38,30 @@
   }
 
   input {
-    @apply text-gray-500 ml-4;
+    @apply text-gray-500;
   }
 
   .form {
-    @apply flex flex-col gap-6;
+    @apply flex flex-col gap-6 w-full h-full;
+
+    .formInputBlock {
+      @apply flex justify-between gap-6;
+    }
+
+    .oneBlockForm {
+      @apply flex flex-col gap-6 flex-1;
+    }
+
+    .twoBlockForm {
+      @apply flex flex-col gap-6 flex-1 border-l-2 pl-4;
+    }
+
+    .buttonBlock {
+      @apply flex justify-start gap-10;
+      button {
+        @apply w-36;
+      }
+    }
   }
 
 }

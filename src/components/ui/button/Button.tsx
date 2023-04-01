@@ -1,4 +1,4 @@
-import React, { Component, PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import scss from './Button.module.scss';
 
 interface IButton extends PropsWithChildren {
@@ -6,15 +6,13 @@ interface IButton extends PropsWithChildren {
   onClick?: () => void;
 }
 
-class Button extends Component<IButton> {
-  render() {
-    const { children, ...rest } = this.props;
-    return (
-      <button className={scss.button} {...rest}>
-        {children}
-      </button>
-    );
-  }
+function Button(props: IButton) {
+  const { children, ...rest } = props;
+  return (
+    <button className={scss.button} {...rest}>
+      {children}
+    </button>
+  );
 }
 
 export default Button;
