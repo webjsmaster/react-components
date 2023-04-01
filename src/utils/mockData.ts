@@ -8,7 +8,7 @@ import p7 from './../image/7.jpg';
 import p8 from './../image/8.jpg';
 import p9 from './../image/9.jpg';
 
-export interface ICard {
+export interface ICardHome {
   id: number;
   name: string;
   description: string;
@@ -17,7 +17,7 @@ export interface ICard {
   view: number;
 }
 
-export const cards: ICard[] = [
+export const cards: ICardHome[] = [
   {
     id: 1,
     name: 'Thirst',

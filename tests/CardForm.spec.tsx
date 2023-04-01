@@ -2,11 +2,11 @@ import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import CardFormBlock from '../src/components/ui/card-form-block/CardFormBlock';
-import { ICardForm } from '../src/types/form.interface';
+import { ICard } from '../src/types/form.interface';
 import { uuidv4 } from '../src/utils/uuid';
 
 describe('InputTextElement', async () => {
-  const cards: ICardForm[] = [
+  const cards: ICard[] = [
     {
       id: uuidv4(),
       firstText: 'firstText',

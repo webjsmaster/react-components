@@ -3,7 +3,7 @@ import { Layout } from '../../ui/layout/Layout';
 import scss from './FormPage.module.scss';
 import Button from '../../ui/button/Button';
 import CardFormBlock from '../../ui/card-form-block/CardFormBlock';
-import { ICardForm, IFieldData } from '../../../types/form.interface';
+import { ICard, IFieldData } from '../../../types/form.interface';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import InputField from '../../ui/input/InputField';
 import SelectedField from '../../ui/input-select/SelectedField';
@@ -13,7 +13,7 @@ import RadioField from '../../ui/input-radio/RadioField';
 import { uuidv4 } from '../../../utils/uuid';
 
 const FormPage: FC = () => {
-  const [cards, setCards] = useState<ICardForm[]>([]);
+  const [cards, setCards] = useState<ICard[]>([]);
 
   const {
     handleSubmit,
@@ -28,9 +28,6 @@ const FormPage: FC = () => {
 
   const onSubmit: SubmitHandler<IFieldData> = (data: IFieldData) => {
     const image = URL.createObjectURL(data.file[0]);
-
-    console.log('📌:', data);
-
     setCards([...cards!, { ...data, id: uuidv4(), img: image }]);
     reset();
     alert('Card created!');

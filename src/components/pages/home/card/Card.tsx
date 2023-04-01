@@ -2,9 +2,9 @@ import React from 'react';
 import scss from './Card.module.scss';
 import like from '../../../../image/like.svg';
 import view from './../../../../image/view.svg';
-import { ICard } from '../../../../utils/mockData';
+import { ICardHome } from '../../../../utils/mockData';
 
-function Card(props: ICard) {
+function Card(props: ICardHome) {
   return (
     <div className={scss.body}>
       <div className={scss.name}>{props.name}</div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import scss from './Home.module.scss';
-import { cards, ICard } from '../../../utils/mockData';
+import { cards, ICardHome } from '../../../utils/mockData';
 import { Layout } from '../../ui/layout/Layout';
 import Card from './card/Card';
 
@@ -8,7 +8,7 @@ function Home() {
   return (
     <Layout>
       <nav className={scss.wrapper} data-testid="home-page">
-        {cards.map((t: ICard) => (
+        {cards.map((t: ICardHome) => (
           <Card
             key={t.id}
             id={t.id}

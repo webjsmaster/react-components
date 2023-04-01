@@ -8,8 +8,8 @@
 }
 
 .innerCircle {
-  @apply rounded-full bg-[#ffd34d] transition-all w-5 h-5 duration-300 absolute top-1/2 -translate-y-[9px]
-  left-1/2 -translate-x-[10px] shadow-radio;
+  @apply rounded-full bg-[#ffd34d] transition-all w-4 h-4 duration-300 absolute top-1/2 -translate-y-1/2
+  left-1/2 -translate-x-1/2;
 }
 
 .unselected {
@@ -17,8 +17,8 @@
 }
 
 .unselectedCircle {
-  @apply w-0 h-0 absolute top-1/2 -translate-y-0
-  left-1/2 -translate-x-0 shadow-none;
+  @apply w-0 h-0 absolute top-1/2 -translate-y-1/2
+  left-1/2 -translate-x-1/2 shadow-none;
 }
 
 .text {

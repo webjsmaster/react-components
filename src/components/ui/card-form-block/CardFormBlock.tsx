@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import { ICardForm } from 'types/form.interface';
+import { ICard } from 'types/form.interface';
 import scss from './CardFormBlock.module.scss';
 import cn from 'classnames';
 
-const CardFormBlock: FC<{ cards: ICardForm[] }> = ({ cards }) => {
+const CardFormBlock: FC<{ cards: ICard[] }> = ({ cards }) => {
   return (
     <div className={scss.cardBlock}>
       {cards &&
-        cards.map((card: ICardForm) => (
+        cards.map((card: ICard) => (
           <div key={card.id} className={cn(scss.wrapper, scss[card.select])}>
             <div className={scss.textBlock}>
               <div className={scss.name}>{card.firstText}</div>

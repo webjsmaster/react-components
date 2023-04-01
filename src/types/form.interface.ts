@@ -15,7 +15,7 @@ export interface IFieldData {
   firstText: string;
   secondText: string;
   date: string;
-  file?: FileList;
+  file: FileList;
   select: string;
   checkbox: boolean;
   radio: 'first' | 'second';
@@ -24,14 +24,9 @@ export interface IFieldData {
 
 export interface ICardForm extends IFieldData {
   id: string;
-  // firstText: string;
-  // secondText: string;
-  // date: string;
-  // checkbox: boolean;
-  // radio: boolean;
-  // file: string;
-  // select: string;
 }
+
+export interface ICard extends Omit<ICardForm, 'file'> {}
 
 export interface ISelectedField extends PropsWithChildren {
   options: IOption[];
