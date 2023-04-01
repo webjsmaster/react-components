@@ -13,7 +13,7 @@
 }
 
 .unselected {
-  @apply border-none bg-red-500
+  @apply border-none bg-red-500 hover:bg-red-400;
 }
 
 .unselectedCircle {
