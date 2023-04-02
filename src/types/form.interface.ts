@@ -26,7 +26,7 @@ export interface ICardForm extends IFieldData {
   id: string;
 }
 
-export interface ICard extends Omit<ICardForm, 'file'> {}
+export type ICard = Omit<ICardForm, 'file'>;
 
 export interface ISelectedField extends PropsWithChildren {
   options: IOption[];
