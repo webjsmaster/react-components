@@ -1,0 +1,26 @@
+.wrapper {
+  @apply select-none cursor-pointer flex my-2
+}
+
+.outerCircle {
+  @apply w-7 h-7 bg-green-700 rounded-full
+  mr-[16px] transition-all duration-200 relative
+}
+
+.innerCircle {
+  @apply rounded-full bg-[#ffd34d] transition-all w-4 h-4 duration-300 absolute top-1/2 -translate-y-1/2
+  left-1/2 -translate-x-1/2;
+}
+
+.unselected {
+  @apply border-none bg-red-500 hover:bg-red-400;
+}
+
+.unselectedCircle {
+  @apply w-0 h-0 absolute top-1/2 -translate-y-1/2
+  left-1/2 -translate-x-1/2 shadow-none;
+}
+
+.text {
+  @apply text-gray-700 pr-2
+}
