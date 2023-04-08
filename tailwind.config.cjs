@@ -3,6 +3,7 @@ const colors = require('tailwindcss/colors');
 
 const constants = {
   myBlue: '#6366f1',
+  bg: 'rgba(0,0,0,0.4)',
 };
 
 module.exports = {

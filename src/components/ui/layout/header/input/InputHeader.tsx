@@ -1,13 +1,17 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import scss from './InputHeader.module.scss';
+import { HomeContext } from '../../../../../context';
 
 const InputHeader: FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const valueRef = useRef<string>();
 
+  const { foundHandler } = useContext(HomeContext);
+
   useEffect(() => {
     if (localStorage.getItem('search')) {
       setInputValue(localStorage.getItem('search') as string);
+      foundHandler(localStorage.getItem('search') as string);
     }
   }, []);
 
@@ -18,8 +22,9 @@ const InputHeader: FC = () => {
       }
     };
   }, []);
+
   const handleSearch = () => {
-    alert('Implementation stage');
+    foundHandler(inputValue);
   };
   const handleInput = (e: string) => {
     valueRef.current = e;
@@ -34,6 +39,11 @@ const InputHeader: FC = () => {
         placeholder={'InputHeader for search'}
         className={scss.input}
         onChange={(e) => handleInput(e.target.value)}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch();
+          }
+        }}
       />
       <div className={scss.ico} onClick={handleSearch}>
         <svg
