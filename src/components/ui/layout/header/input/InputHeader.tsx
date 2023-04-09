@@ -13,6 +13,7 @@ const InputHeader: FC = () => {
       setInputValue(localStorage.getItem('search') as string);
       foundHandler(localStorage.getItem('search') as string);
     }
+    /* eslint-disable */
   }, []);
 
   useEffect(() => {

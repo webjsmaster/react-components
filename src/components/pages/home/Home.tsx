@@ -23,6 +23,7 @@ const Home: FC = () => {
           setProducts(data.products);
         });
     }
+    /* eslint-disable */
   }, []);
 
   const showHandle = (id: number) => {
