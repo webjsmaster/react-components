@@ -6,7 +6,7 @@ describe('Cards list test', () => {
     const host = document.createElement('div');
     document.body.appendChild(host);
     let children;
-    const instance = new Layout({ children });
+    const instance = Layout({ children });
     expect(instance).toBeTruthy();
   });
 });
