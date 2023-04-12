@@ -5,6 +5,7 @@ import Card from './card/Card';
 import scss from './Home.module.scss';
 import Modal, { ICardModal } from '../../ui/modal/Modal';
 import { HomeContext } from '../../../context';
+import { useActions, useAppSelector } from '../../../hooks/redux';
 
 const Home: FC = () => {
   const [products, setProducts] = useState([]);
@@ -12,6 +13,10 @@ const Home: FC = () => {
   const [isLoadingCard, setIsLoadingCard] = useState(false);
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [cardProduct, setCardProduct] = useState<ICardModal | undefined>();
+
+  const { products: test } = useAppSelector((state) => state.productReducer);
+
+  const { addProducts } = useActions();
 
   useEffect(() => {
     if (!products.length && !localStorage.getItem('search')) {
@@ -21,6 +26,7 @@ const Home: FC = () => {
         .then((data) => {
           setIsLoading(false);
           setProducts(data.products);
+          addProducts(data.products);
         });
     }
     /* eslint-disable */
@@ -38,6 +44,7 @@ const Home: FC = () => {
   };
 
   const foundHandler = (value: string) => {
+    console.log('📌:SEARCH');
     setIsLoadingCard(true);
     fetch(`https://dummyjson.com/products/search?q=${value}`)
       .then((res) => res.json())
@@ -46,6 +53,8 @@ const Home: FC = () => {
         setProducts(data.products);
       });
   };
+
+  console.log('📌:product', test);
 
   return (
     <HomeContext.Provider value={{ foundHandler }}>
