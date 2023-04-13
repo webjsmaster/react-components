@@ -6,6 +6,7 @@ import scss from './Home.module.scss';
 import Modal, { ICardModal } from '../../ui/modal/Modal';
 import { HomeContext } from '../../../context';
 import { useActions, useAppSelector } from '../../../hooks/redux';
+import { productsApi } from '../../../store/api/products.api';
 
 const Home: FC = () => {
   const [products, setProducts] = useState([]);
@@ -17,6 +18,12 @@ const Home: FC = () => {
   const { products: test } = useAppSelector((state) => state.productReducer);
 
   const { addProducts } = useActions();
+
+  const { data: all, isLoading: loading } = productsApi.useGetAllProductsQuery('');
+  const { data: one } = productsApi.useGetOneProductQuery('');
+
+  console.log('📌:DATA', all, loading);
+  console.log('📌:ONE', one, loading);
 
   useEffect(() => {
     if (!products.length && !localStorage.getItem('search')) {
