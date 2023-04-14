@@ -2,15 +2,12 @@ import React, { Dispatch, FC, SetStateAction } from 'react';
 import scss from './Modal.module.scss';
 import cn from 'classnames';
 import CardModal from './CardModal/CardModal';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/fetchBaseQuery';
-import { SerializedError } from '@reduxjs/toolkit';
+import { productsApi } from '../../../store/api/products.api';
 
 interface IModal {
   active: boolean;
   setActive: Dispatch<SetStateAction<boolean>>;
-  cardProduct: ICardModal | undefined;
-  isLoading: boolean;
-  error: FetchBaseQueryError | SerializedError | undefined;
+  id: number;
 }
 
 export interface ICardModal {
@@ -27,17 +24,19 @@ export interface ICardModal {
   title: string;
 }
 
-const Modal: FC<IModal> = ({ active, setActive, isLoading, cardProduct, error }) => {
+const Modal: FC<IModal> = ({ active, setActive, id }) => {
+  const { data, isLoading, error } = productsApi.useGetOneProductQuery(id);
+
   return (
     <div
       className={active ? cn(scss.modal, scss.active) : scss.modal}
       onClick={() => setActive(false)}
     >
       <div className={scss.content} onClick={(e) => e.stopPropagation()}>
-        {isLoading ? (
+        {isLoading || data?.id !== id ? (
           'Loading...'
         ) : !error ? (
-          <CardModal card={cardProduct} setActive={setActive} />
+          <CardModal card={data} setActive={() => setActive(false)} />
         ) : (
           'The request failed'
         )}

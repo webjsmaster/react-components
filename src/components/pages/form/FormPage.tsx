@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Layout } from '../../ui/layout/Layout';
 import scss from './FormPage.module.scss';
 import Button from '../../ui/button/Button';
 import CardFormBlock from '../../ui/card-form-block/CardFormBlock';
-import { ICard, IFieldData } from '../../../types/form.interface';
+import { IFieldData } from '../../../types/form.interface';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import InputField from '../../ui/input/InputField';
 import SelectedField from '../../ui/input-select/SelectedField';
@@ -11,9 +11,11 @@ import { options } from '../../../utils/consts';
 import SwitchField from '../../ui/input-switch/SwitchField';
 import RadioField from '../../ui/input-radio/RadioField';
 import { uuidv4 } from '../../../utils/uuid';
+import { useActions, useAppSelector } from '../../../hooks/redux';
 
 const FormPage: FC = () => {
-  const [cards, setCards] = useState<ICard[]>([]);
+  const { addCard } = useActions();
+  const { cards } = useAppSelector((state) => state.cardReducer);
 
   const {
     handleSubmit,
@@ -28,9 +30,8 @@ const FormPage: FC = () => {
 
   const onSubmit: SubmitHandler<IFieldData> = (data: IFieldData) => {
     const image = URL.createObjectURL(data.file[0]);
-    setCards([...cards!, { ...data, id: uuidv4(), img: image }]);
+    addCard({ ...data, id: uuidv4(), img: image });
     reset();
-    alert('Card created!');
   };
 
   const handleReset = () => {

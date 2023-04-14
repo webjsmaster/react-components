@@ -22,7 +22,6 @@ export const productsApi = api.injectEndpoints({
     getOneProduct: build.query<IProduct, number>({
       query: (id: number) => ({
         url: `/${id}`,
-        refetchOnMountOrArgChange: true,
       }),
     }),
   }),

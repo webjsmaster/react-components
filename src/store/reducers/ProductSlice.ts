@@ -1,33 +1,27 @@
-import { IProduct } from '../../types/store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICardForm } from '../../types/form.interface';
 
-interface ProductState {
-  products: IProduct[];
+interface CardState {
+  cards: ICardForm[];
   // product: IProduct | null;
   isLoading: boolean;
   error: string;
 }
 
-const initialState: ProductState = {
-  products: [],
-  // product: null,
+const initialState: CardState = {
+  cards: [],
   isLoading: false,
   error: '',
 };
 
 export const productSlice = createSlice({
-  name: 'product',
+  name: 'card',
   initialState,
   reducers: {
-    addProducts: (state, action: PayloadAction<[IProduct]>) => {
-      state.products = { ...action.payload };
+    addCard: (state, action: PayloadAction<ICardForm>) => {
+      state.cards = [...state.cards, action.payload];
     },
-    // addProduct: (state, action: PayloadAction<IProduct>) => {
-    //   state.product = action.payload;
-    // },
   },
 });
 
 export const { reducer, actions } = productSlice;
-
-// export default productSlice.reducer;

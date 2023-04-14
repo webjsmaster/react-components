@@ -19,7 +19,7 @@ const CardModal: FC<ICardModalProps> = ({ card, setActive }) => {
       </div>
       <div className={scss.body}>
         <div className={scss.img}>
-          <img src={card?.images[0]} alt="" />
+          <img src={card?.thumbnail} alt="" />
         </div>
         <div className={scss.description}>
           <div>

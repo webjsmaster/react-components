@@ -6,10 +6,10 @@ import scss from './Home.module.scss';
 import { HomeContext } from '../../../context';
 import { productsApi } from '../../../store/api/products.api';
 import Modal from '../../ui/modal/Modal';
-import { useDispatch } from 'react-redux';
 
 const Home: FC = () => {
   const [modalActive, setModalActive] = useState<boolean>(false);
+  const [id, setId] = useState<number>(1);
 
   const {
     data: dataAllProducts,
@@ -20,19 +20,9 @@ const Home: FC = () => {
     skip: 0,
   });
 
-  const [
-    trigger,
-    { data: dataOneProduct, isLoading: isLoadingOneProducts, error: errorOneProduct },
-  ] = productsApi.useLazyGetOneProductQuery();
-
-  console.log('📌:', dataOneProduct, isLoadingOneProducts);
-
-  const dispatch = useDispatch();
-
   const showHandle = (id: number) => {
-    dispatch(productsApi.util.invalidateTags(['Products']));
+    setId(id);
     setModalActive(true);
-    trigger(id);
   };
 
   const foundHandler = (value: string) => {
@@ -46,18 +36,12 @@ const Home: FC = () => {
     //   });
   };
 
-  console.log('💫:ERROR', errorOneProduct, errorAllProducts);
+  console.log('💫:ERROR', errorAllProducts);
 
   return (
     <HomeContext.Provider value={{ foundHandler }}>
       <div data-testid="home-page">
-        <Modal
-          active={modalActive}
-          setActive={setModalActive}
-          isLoading={isLoadingOneProducts}
-          cardProduct={dataOneProduct}
-          error={errorOneProduct}
-        />
+        <Modal active={modalActive} setActive={setModalActive} id={id} />
         <Layout>
           {isLoadingAllProducts ? (
             <PreLoader />
