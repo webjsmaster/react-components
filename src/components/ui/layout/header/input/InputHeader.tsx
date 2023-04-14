@@ -1,34 +1,11 @@
-import { FC, useContext, useEffect, useRef, useState } from 'react';
+import { FC, useState } from 'react';
 import scss from './InputHeader.module.scss';
-import { HomeContext } from '../../../../../context';
 
 const InputHeader: FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
-  const valueRef = useRef<string>();
 
-  const { foundHandler } = useContext(HomeContext);
-
-  useEffect(() => {
-    if (localStorage.getItem('search')) {
-      setInputValue(localStorage.getItem('search') as string);
-      foundHandler(localStorage.getItem('search') as string);
-    }
-    /* eslint-disable */
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (typeof valueRef.current === 'string') {
-        localStorage.setItem('search', valueRef.current);
-      }
-    };
-  }, []);
-
-  const handleSearch = () => {
-    foundHandler(inputValue);
-  };
+  const handleSearch = () => {};
   const handleInput = (e: string) => {
-    valueRef.current = e;
     setInputValue(e);
   };
 

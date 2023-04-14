@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Layout } from '../../ui/layout/Layout';
 import PreLoader from '../../ui/preloader/PreLoader';
 import Card from './card/Card';
@@ -6,10 +6,12 @@ import scss from './Home.module.scss';
 import { HomeContext } from '../../../context';
 import { productsApi } from '../../../store/api/products.api';
 import Modal from '../../ui/modal/Modal';
+import { IProduct } from '../../../types/store';
 
 const Home: FC = () => {
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [id, setId] = useState<number>(1);
+  const [products, setProducts] = useState<IProduct[]>();
 
   const {
     data: dataAllProducts,
@@ -20,23 +22,29 @@ const Home: FC = () => {
     skip: 0,
   });
 
+  const [trigger, { data, isLoading, error }] = productsApi.useLazySearchProductQuery();
+
+  useEffect(() => {
+    if (dataAllProducts?.products) {
+      setProducts(dataAllProducts.products);
+    }
+  }, [dataAllProducts?.products]);
+
   const showHandle = (id: number) => {
     setId(id);
     setModalActive(true);
   };
 
   const foundHandler = (value: string) => {
-    // console.log('📌:SEARCH');
-    // setIsLoadingCard(true);
-    // fetch(`https://dummyjson.com/products/search?q=${value}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setIsLoadingCard(false);
-    //     setProducts(data.products);
-    //   });
+    trigger(value);
   };
+  useEffect(() => {
+    if (data) {
+      setProducts(data.products);
+    }
+  }, [data]);
 
-  console.log('💫:ERROR', errorAllProducts);
+  console.log('💫:DATA', data);
 
   return (
     <HomeContext.Provider value={{ foundHandler }}>
@@ -47,21 +55,19 @@ const Home: FC = () => {
             <PreLoader />
           ) : dataAllProducts ? (
             <nav className={scss.wrapper}>
-              {dataAllProducts.products &&
-                dataAllProducts.products.map(
-                  ({ id, title, description, thumbnail, price, rating }) => (
-                    <Card
-                      key={id}
-                      id={id}
-                      name={title}
-                      description={description}
-                      poster={thumbnail}
-                      like={price}
-                      view={rating}
-                      showHandle={showHandle}
-                    />
-                  )
-                )}
+              {products &&
+                products.map(({ id, title, description, thumbnail, price, rating }) => (
+                  <Card
+                    key={id}
+                    id={id}
+                    name={title}
+                    description={description}
+                    poster={thumbnail}
+                    like={price}
+                    view={rating}
+                    showHandle={showHandle}
+                  />
+                ))}
             </nav>
           ) : (
             <div className={scss.errorFound}>

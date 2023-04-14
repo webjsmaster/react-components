@@ -1,7 +1,7 @@
 import { api } from './api';
 import { IProduct } from '../../types/store';
 
-interface IQueryProducts {
+export interface IQueryProducts {
   limit: number;
   skip: number;
   total: number;
@@ -22,6 +22,14 @@ export const productsApi = api.injectEndpoints({
     getOneProduct: build.query<IProduct, number>({
       query: (id: number) => ({
         url: `/${id}`,
+      }),
+    }),
+    searchProduct: build.query<IQueryProducts, string>({
+      query: (q: string) => ({
+        url: `/search`,
+        params: {
+          q,
+        },
       }),
     }),
   }),

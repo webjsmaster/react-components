@@ -6,12 +6,14 @@ interface CardState {
   // product: IProduct | null;
   isLoading: boolean;
   error: string;
+  inputValue: string;
 }
 
 const initialState: CardState = {
   cards: [],
   isLoading: false,
   error: '',
+  inputValue: '',
 };
 
 export const productSlice = createSlice({
@@ -20,6 +22,9 @@ export const productSlice = createSlice({
   reducers: {
     addCard: (state, action: PayloadAction<ICardForm>) => {
       state.cards = [...state.cards, action.payload];
+    },
+    handlerInput: (state, action: PayloadAction<string>) => {
+      state.inputValue = action.payload;
     },
   },
 });
