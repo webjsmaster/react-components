@@ -9,7 +9,7 @@ interface ICardModalProps {
 
 const CardModal: FC<ICardModalProps> = ({ card, setActive }) => {
   return (
-    <div className={scss.wrapper}>
+    <div className={scss.wrapper} data-testid="card-modal">
       <div className={scss.titleWrapper}>
         <div className={scss.title}>{card?.title}</div>
         <div className={scss.percent}>{card?.discountPercentage} $</div>

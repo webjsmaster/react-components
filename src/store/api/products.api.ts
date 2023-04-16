@@ -24,11 +24,13 @@ export const productsApi = api.injectEndpoints({
         url: `/${id}`,
       }),
     }),
-    searchProduct: build.query<IQueryProducts, string>({
-      query: (q: string) => ({
+    searchProduct: build.query<IQueryProducts, { limit: number; skip: number; q: string }>({
+      query: ({ q, limit, skip }) => ({
         url: `/search`,
         params: {
           q,
+          limit,
+          skip,
         },
       }),
     }),

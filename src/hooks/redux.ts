@@ -1,7 +1,7 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/store';
 import { useMemo } from 'react';
-import { actions } from '../store/reducers/ProductSlice';
+import { actions } from '../store/reducers/AllSlice';
 import { bindActionCreators } from '@reduxjs/toolkit';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();

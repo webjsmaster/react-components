@@ -14,6 +14,7 @@ export function Header() {
       <div className={scss.container}>
         <Link to={HOME_ROUTE} className={scss.logo}>
           <img src={logo} alt="logo" />
+          LOGO
         </Link>
         <InputHeader />
         <nav className={scss.menu}>

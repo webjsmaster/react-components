@@ -3,7 +3,7 @@ import './PreLoader.scss';
 
 const PreLoader: FC = () => {
   return (
-    <div className="wrapper flex-center">
+    <div className="wrapper flex-center" data-testid="loading">
       <div className="container">
         <div className="container-dot dot-a">
           <div className="dot"></div>

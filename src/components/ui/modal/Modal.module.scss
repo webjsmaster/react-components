@@ -8,5 +8,5 @@
 }
 
 .modal.active {
-  @apply opacity-100 pointer-events-auto;
+  @apply opacity-100 pointer-events-auto backdrop-blur;
 }

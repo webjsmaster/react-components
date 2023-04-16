@@ -1,17 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Layout } from '../../ui/layout/Layout';
 import PreLoader from '../../ui/preloader/PreLoader';
 import Card from './card/Card';
 import scss from './Home.module.scss';
-import { HomeContext } from '../../../context';
 import { productsApi } from '../../../store/api/products.api';
 import Modal from '../../ui/modal/Modal';
 import { IProduct } from '../../../types/store';
+import { useAppSelector } from '../../../hooks/redux';
 
 const Home: FC = () => {
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [id, setId] = useState<number>(1);
   const [products, setProducts] = useState<IProduct[]>();
+
+  const { inputValue } = useAppSelector((state) => state.cardReducer);
 
   const {
     data: dataAllProducts,
@@ -22,61 +24,68 @@ const Home: FC = () => {
     skip: 0,
   });
 
-  const [trigger, { data, isLoading, error }] = productsApi.useLazySearchProductQuery();
+  const [
+    trigger,
+    {
+      data: dataSearchProducts,
+      isFetching: isFetchingSearchProducts,
+      error: errorSearchProducts,
+      isLoading,
+    },
+  ] = productsApi.useLazySearchProductQuery();
 
   useEffect(() => {
-    if (dataAllProducts?.products) {
+    if (dataAllProducts && !dataSearchProducts) {
       setProducts(dataAllProducts.products);
     }
-  }, [dataAllProducts?.products]);
+  }, [dataAllProducts, dataSearchProducts]);
 
   const showHandle = (id: number) => {
     setId(id);
     setModalActive(true);
   };
 
-  const foundHandler = (value: string) => {
-    trigger(value);
-  };
-  useEffect(() => {
-    if (data) {
-      setProducts(data.products);
+  useMemo(() => {
+    if (inputValue) {
+      setProducts([]);
+      trigger({ q: inputValue, skip: 0, limit: 0 }).then(({ data }) => setProducts(data?.products));
+    } else {
+      setProducts(dataAllProducts?.products);
     }
-  }, [data]);
-
-  console.log('💫:DATA', data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue]);
 
   return (
-    <HomeContext.Provider value={{ foundHandler }}>
-      <div data-testid="home-page">
-        <Modal active={modalActive} setActive={setModalActive} id={id} />
-        <Layout>
-          {isLoadingAllProducts ? (
-            <PreLoader />
-          ) : dataAllProducts ? (
-            <nav className={scss.wrapper}>
-              {products &&
-                products.map(({ id, title, description, thumbnail, price, rating }) => (
-                  <Card
-                    key={id}
-                    id={id}
-                    name={title}
-                    description={description}
-                    poster={thumbnail}
-                    like={price}
-                    view={rating}
-                    showHandle={showHandle}
-                  />
-                ))}
-            </nav>
-          ) : (
-            <div className={scss.errorFound}>
-              {!errorAllProducts ? 'Products not found' : 'The request failed'}
-            </div>
-          )}
-        </Layout>
-      </div>
-    </HomeContext.Provider>
+    <div data-testid="home-page">
+      <Modal active={modalActive} setActive={setModalActive} id={id} />
+      <Layout>
+        {isLoadingAllProducts || isFetchingSearchProducts || isLoading ? (
+          <PreLoader />
+        ) : products?.length ? (
+          <nav className={scss.wrapper}>
+            {products &&
+              products.map(({ id, title, description, thumbnail, price, rating }) => (
+                <Card
+                  key={id}
+                  id={id}
+                  title={title}
+                  description={description}
+                  thumbnail={thumbnail}
+                  price={price}
+                  rating={rating}
+                  showHandle={showHandle}
+                />
+              ))}
+          </nav>
+        ) : (
+          <div className={scss.errorFound}>
+            {!(errorAllProducts || errorSearchProducts)
+              ? 'Products not found'
+              : 'The request failed'}
+          </div>
+        )}
+      </Layout>
+    </div>
   );
 };
 

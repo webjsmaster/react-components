@@ -2,13 +2,17 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import AppRouter from '../src/components/router/Router';
 import { MemoryRouter } from 'react-router-dom';
+import { store } from '../src/store/store';
+import { Provider } from 'react-redux';
 
 describe('Routing', () => {
   it('renders Main component on root path', () => {
     render(
-      <MemoryRouter initialEntries={['']}>
-        <AppRouter />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['']}>
+          <AppRouter />
+        </MemoryRouter>
+      </Provider>
     );
     const mainElement = screen.getByTestId('home-page');
     expect(mainElement).toBeInTheDocument();
@@ -16,9 +20,11 @@ describe('Routing', () => {
 
   it('renders AboutUs component on /about path', () => {
     render(
-      <MemoryRouter initialEntries={['/about']}>
-        <AppRouter />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/about']}>
+          <AppRouter />
+        </MemoryRouter>
+      </Provider>
     );
     const aboutUsElement = screen.getByTestId('about-page');
     expect(aboutUsElement).toBeInTheDocument();
@@ -26,9 +32,11 @@ describe('Routing', () => {
 
   it('renders Form component on /form path', () => {
     render(
-      <MemoryRouter initialEntries={['/form']}>
-        <AppRouter />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/form']}>
+          <AppRouter />
+        </MemoryRouter>
+      </Provider>
     );
     const aboutUsElement = screen.getByTestId('form-page');
     expect(aboutUsElement).toBeInTheDocument();

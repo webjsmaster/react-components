@@ -5,11 +5,11 @@ import view from './../../../../image/view.svg';
 
 export interface ICardHome {
   id: number;
-  name: string;
+  title: string;
   description: string;
-  poster: string;
-  like: number;
-  view: number;
+  thumbnail: string;
+  price: number;
+  rating: number;
 }
 
 export interface ICardHomeProps extends ICardHome {
@@ -19,20 +19,20 @@ export interface ICardHomeProps extends ICardHome {
 function Card(props: ICardHomeProps) {
   const { id, showHandle } = props;
   return (
-    <div className={scss.body} onClick={() => showHandle(id)}>
-      <div className={scss.name}>{props.name}</div>
+    <div className={scss.body} onClick={() => showHandle(id)} data-testid="card-home">
+      <h3 className={scss.name}>{props.title}</h3>
       <div className={scss.poster}>
-        <img src={props.poster} alt="" />
+        <img src={props.thumbnail} alt="" />
       </div>
       <div className={scss.footer}>
         <div className={scss.like}>
-          <div>{props.like}</div>
+          <div>{props.price}</div>
           <div className="mr-2">
             <img src={like} alt="" className={scss.icon} />
           </div>
         </div>
         <div className={scss.like}>
-          <div className="mr-2">{props.view}</div>
+          <div className="mr-2">{props.rating}</div>
           <div>
             <img src={view} alt="" className={scss.icon} />
           </div>

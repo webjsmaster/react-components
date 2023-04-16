@@ -16,7 +16,7 @@ const initialState: CardState = {
   inputValue: '',
 };
 
-export const productSlice = createSlice({
+export const allSlice = createSlice({
   name: 'card',
   initialState,
   reducers: {
@@ -29,4 +29,4 @@ export const productSlice = createSlice({
   },
 });
 
-export const { reducer, actions } = productSlice;
+export const { reducer, actions } = allSlice;

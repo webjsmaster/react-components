@@ -3,6 +3,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import AppRouter from '../src/components/router/Router';
+import { store } from '../src/store/store';
+import { Provider } from 'react-redux';
 
 describe('InputTextElement', () => {
   let inputElement: HTMLInputElement;
@@ -10,9 +12,11 @@ describe('InputTextElement', () => {
 
   beforeEach(() => {
     render(
-      <MemoryRouter initialEntries={['/form']}>
-        <AppRouter />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/form']}>
+          <AppRouter />
+        </MemoryRouter>
+      </Provider>
     );
   });
 
