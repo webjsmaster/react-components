@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Layout } from '../../ui/layout/Layout';
 import PreLoader from '../../ui/preloader/PreLoader';
 import Card from './card/Card';
@@ -45,18 +45,17 @@ const Home: FC = () => {
     setModalActive(true);
   };
 
-  useMemo(() => {
+  useEffect(() => {
     if (inputValue) {
       setProducts([]);
       trigger({ q: inputValue, skip: 0, limit: 0 }).then(({ data }) => setProducts(data?.products));
     } else {
       setProducts(dataAllProducts?.products);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   return (
-    <div data-testid="home-page">
+    <div data-testid='home-page'>
       <Modal active={modalActive} setActive={setModalActive} id={id} />
       <Layout>
         {isLoadingAllProducts || isFetchingSearchProducts || isLoading ? (
