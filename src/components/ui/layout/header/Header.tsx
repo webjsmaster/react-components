@@ -1,6 +1,6 @@
 import React from 'react';
 import scss from './Header.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ERROR_ROUTE, HOME_ROUTE } from '../../../../utils/consts';
 import logo from './../../../../image/logo-nodejs.png';
 import { routes } from '../../../router/routes';
@@ -8,7 +8,8 @@ import ItemMenu from './itemMenu/ItemMenu';
 import InputHeader from './input/InputHeader';
 
 export function Header() {
-  const loc = document.location;
+  const { pathname } = useLocation();
+
   return (
     <div className={scss.wrapper}>
       <div className={scss.container}>
@@ -25,7 +26,7 @@ export function Header() {
                 <ItemMenu
                   key={r.path}
                   route={r.path}
-                  className={loc.pathname === r.path ? scss.active : scss.def}
+                  className={pathname === r.path ? scss.active : scss.def}
                 >
                   {r.name}
                 </ItemMenu>

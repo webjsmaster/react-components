@@ -1,38 +1,77 @@
+//{
+//  "compilerOptions": {
+//    "target": "ESNext",
+//    "useDefineForClassFields": true,
+//    "lib": [
+//      "DOM",
+//      "DOM.Iterable",
+//      "ES6",
+//      "ESNext"
+//    ],
+//    "allowJs": false,
+//    "skipLibCheck": true,
+//    "allowSyntheticDefaultImports": true,
+//    "strict": true,
+//    "forceConsistentCasingInFileNames": true,
+//    "module": "ESNext",
+//    "moduleResolution": "Node",
+//    "resolveJsonModule": true,
+//    "isolatedModules": true,
+//    "noEmit": true,
+//    "jsx": "react-jsx",
+//    "noImplicitAny": true,
+//    "noFallthroughCasesInSwitch": true,
+//    "esModuleInterop": true,
+//    "baseUrl": "src",
+//  },
+//  "include": [
+//    "src",
+//    "server",
+//    "styled.d.ts",
+//    "vite.config.ts",
+//    "server/server.ts"
+//  ],
+//  "ts-node": {
+//    "esm": true,
+//    "transpileOnly": true,
+//    "experimentalResolverFeatures": false,
+//    "compilerOptions": {
+//      "target": "ESNext",
+//      "types": ["vite/client"]
+//    }
+//  },
+//  "references": [
+//    {
+//      "path": "./tsconfig.node.json"
+//    }
+//  ]
+//}
+
+
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES6",
-      "ESNext"
-    ],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
+    "target": "esnext",
+    "lib": ["dom", "esnext", "dom.iterable"],
     "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "baseUrl": "./src"
+    "forceConsistentCasingInFileNames": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": [
-    "./src/**/*",
-    "styled.d.ts",
-    "vite.config.ts"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+  },
+  "include": ["src", "vite.config.ts", ".eslintrc.cjs",
+    "src/server/server.ts"
   ]
 }
 

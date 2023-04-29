@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import { routes } from './routes';
 import { IRoute } from '../../types/routerType';
+import { routes } from './routes';
 
 function AppRouter() {
   return (
