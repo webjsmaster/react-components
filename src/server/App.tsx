@@ -13,11 +13,8 @@ interface AssetMap {
 }
 
 async function render(req: Request, res: Response, assetMap: AssetMap) {
-  // await Promise.all(store.dispatch(productsApi.util.getRunningQueriesThunk()));
   const preloadedState = store.getState();
   let didError = false;
-
-  console.log('✅: ', preloadedState);
 
   const { pipe } = renderToPipeableStream(
     <Html style={assetMap.style} preloadedState={preloadedState}>
