@@ -1,6 +1,21 @@
 .body {
-  @apply border border-teal-500 rounded-xl p-4 shadow-card
+  @apply border border-teal-500 rounded-xl p-4 shadow-card flex flex-col items-center cursor-pointer
+  hover:scale-105 transition-all duration-500;
 
+  .poster {
+    @apply rounded-xl overflow-hidden h-56;
+    > img {
+      @apply w-auto h-full;
+    }
+  }
+}
+
+.body:hover > .poster > img {
+  @apply scale-125 transition-all duration-500;
+}
+
+.body > .poster > img {
+  @apply scale-100 transition-all duration-500;
 }
 
 .name {
@@ -8,18 +23,12 @@
 }
 
 .des {
-  @apply text-sm mt-2;
+  @apply text-sm mt-2 flex-auto;
 }
 
-.poster {
-  @apply rounded-xl overflow-hidden;
-  > img {
-    @apply w-full h-full;
-  }
-}
 
 .footer {
-  @apply flex justify-end;
+  @apply flex flex justify-end w-full;
 
   .like {
     @apply flex items-center w-14 cursor-pointer active:text-blue-600;

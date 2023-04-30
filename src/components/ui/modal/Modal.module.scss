@@ -1,0 +1,12 @@
+.modal {
+  @apply h-[100vh] w-[100vw] bg-bg fixed left-0 right-0 z-10 flex justify-center items-center
+  opacity-0 pointer-events-none transition-all duration-500;
+
+  .content {
+    @apply p-5 rounded-lg bg-teal-100 h-1/2 w-1/2;
+  }
+}
+
+.modal.active {
+  @apply opacity-100 pointer-events-auto backdrop-blur;
+}

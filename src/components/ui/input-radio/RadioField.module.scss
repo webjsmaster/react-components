@@ -1,0 +1,14 @@
+.wrapper {
+
+  @apply relative text-gray-700;
+
+  .radio {
+    @apply flex justify-start;
+  }
+
+  .errorMessage {
+    @apply absolute -bottom-6 left-0 text-red-500;
+  }
+
+}
+

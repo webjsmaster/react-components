@@ -1,0 +1,6 @@
+.wrapper {
+  @apply text-gray-700 relative;
+  .errorMessage {
+    @apply absolute -bottom-6 right-0 text-red-500;
+  }
+}
