@@ -1,3 +1,7 @@
 .wrapper {
-  @apply grid-cols-3 grid gap-3 my-4;
+  @apply grid-cols-3 grid gap-10 my-4;
+}
+
+.errorFound {
+  @apply flex justify-center items-center w-full mt-20 text-[34px] text-gray-700;
 }

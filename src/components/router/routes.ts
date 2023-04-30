@@ -1,8 +1,6 @@
 import { IRoute } from '../../types/routerType';
-import { ABOUT_ROUTE, ERROR_ROUTE, HOME_ROUTE } from '../../utils/consts';
-import Home from '../pages/home/Home';
-import About from '../pages/about/About';
-import ErrorPage from '../pages/error/ErrorPage';
+import { ABOUT_ROUTE, ERROR_ROUTE, FORM_ROUTE, HOME_ROUTE } from '../../utils/consts';
+import { About, ErrorPage, FormPage, Home } from '../pages';
 
 export const routes: IRoute[] = [
   {
@@ -18,5 +16,10 @@ export const routes: IRoute[] = [
   {
     path: ERROR_ROUTE,
     Page: ErrorPage,
+  },
+  {
+    path: FORM_ROUTE,
+    Page: FormPage,
+    name: 'Form',
   },
 ];
